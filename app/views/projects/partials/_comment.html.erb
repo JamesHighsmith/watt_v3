@@ -3,7 +3,7 @@
   <br/>
   Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %>
   <br/>
-  <%= link_to('Vote Up', vote_comment_path(comment, :direction => :up),  :remote  => true) %>(<%= comemnt.votes_for %>)
+  <%= link_to('Vote Up', vote_comment_path(comment, :direction => :up),  :remote  => true) %>(<%= comment.votes_for %>)
   &nbsp;|&nbsp;
   <%= link_to('Vote Down', vote_comment_path(comment, :direction => :up), :remote  => true) %>(<%= comment.votes_for %>)
   &nbsp;|&nbsp;
