@@ -137,7 +137,7 @@ DEPENDENCIES
   devise
   jquery-rails
   mysql2
-  pg (= 0.12.2)
+  pg
   rails (= 3.2.13)
   rb-readline
   sass-rails (~> 3.2.3)
