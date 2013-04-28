@@ -1,41 +1,40 @@
+<h1>My Clean Energy Projects</h1>
 
+<%= link_to 'New Project', new_project_path %><br>
 
-    <h1>My Clean Energy Projects</h1>
+<table>
+  <tr>
+    <th>Creator</th>
+    <th>Idea</th>
+    <th>Address</th>
+    <th>Zipcode</th>
+    <th>Problem</th>
+    <th>Solution</th>
+    <th>Created</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
 
-     <%= link_to 'New Project', new_project_path %><br>
+  <% @projects.each do |project| %>
+    <tr>
 
-    <table>
-      <tr>
-        <th>Creator</th>
-        <th>Idea</th>
-        <th>Address</th>
-        <th>Zipcode</th>
-        <th>Problem</th>
-        <th>Solution</th>
-        <th>Created</th>
-        <th>Show</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-
-    <% @projects.each do |project| %>
-      <tr>
-        <% if current_user == project.user %>
-        <td><%= current_user.name %></td>
-        <td><%= project.idea %></td>
-        <td><%= project.address %></td>
-        <td><%= project.zipcode %></td>
-        <td><%= project.problem %></td>
-        <td><%= project.solution %></td>
-        <td><%= time_ago_in_words(project.created_at) %> ago.</td>
-        <td><%= link_to 'Show', project %></td>
+      <td><%= current_user.name %></td>
+      <td><%= project.idea %></td>
+      <td><%= project.address %></td>
+      <td><%= project.zipcode %></td>
+      <td><%= project.problem %></td>
+      <td><%= project.solution %></td>
+      <td><%= time_ago_in_words(project.created_at) %> ago.</td>
+      <td><%= link_to 'Show', project %></td>
+      <% if current_user == project.user %>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-    </table>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
 
-   
+
 
 

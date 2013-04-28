@@ -12,7 +12,11 @@ Watt::Application.routes.draw do
     end
   end
 
-  resources :users
+  devise_for :users,  :controllers => {:registrations => "users/registrations", :sessions => "users/sessions"}
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+  devise_for :users do get '/users/sign_in' => 'devise/sessions#new' end
+  devise_for :users do get '/users/edit/:id' => 'devise/registrations#edit' end
+  resources :users, :only => [:edit,:update]
 
   get "static_pages/home"
 
