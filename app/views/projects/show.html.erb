@@ -1,7 +1,7 @@
 <!--Show Project-->
-<%= link_to('Vote up', vote_project_path(@project, :direction => :up), :remote => :true) %>
+<%= link_to('Vote up', vote_project_path(@project, :direction => :up), :remote => :true) %>(<%= @project.votes_for %>)
 &nbsp;|&nbsp;
-<%= link_to('Vote Down', vote_project_path(@project, :direction => :down), :remote  => :true) %>
+<%= link_to('Vote Down', vote_project_path(@project, :direction => :down), :remote  => :true) %>(<%= @project.votes_against %>)
 &nbsp;|&nbsp;
 karma(<%= @project.votes.count %>)
 <table>
