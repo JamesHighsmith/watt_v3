@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"mysql2://root:123@127.0.0.1/watt_development?encoding=utf8","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/7908151402","stream_state":{},"completed_tables":[],"table_filter":null,"local_tables_info":{"comments":19,"projects":3,"schema_migrations":6,"users":1,"votes":8}}
