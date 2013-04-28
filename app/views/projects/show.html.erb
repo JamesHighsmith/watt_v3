@@ -1,0 +1,65 @@
+<!--Show Project-->
+<%= link_to('Vote up', vote_project_path(@project, :direction => :up), :remote => :true) %>
+&nbsp;|&nbsp;
+<%= link_to('Vote Down', vote_project_path(@project, :direction => :down), :remote  => :true) %>
+&nbsp;|&nbsp;
+karma(<%= @project.votes.count %>)
+<table>
+  <p>
+    <b>Creator:</b>
+    <%= @project.user.name %>
+  </p>
+  <p>
+    <b>Idea:</b>
+    <%= @project.idea %>
+  </p>
+  <p>
+    <b>Address:</b>
+    <%= @project.address %>
+  </p>
+  <p>
+    <b>Zipcode:</b>
+    <%= @project.zipcode %>
+  </p>
+  <p>
+    <b>Problem:</b>
+    <%= @project.problem %>
+  </p>
+  <p>
+    <b>Solution:</b>
+    <%= @project.solution %>
+  </p>
+  <p>
+    <b>Created:</b>
+    <%= time_ago_in_words(@project.created_at) %> ago.
+  </p>
+</table>
+
+
+<div id="all_comments">
+  <% comments = @project.comments.order("created_at desc") %>
+  <% unless comments.blank? %>
+    <%  comments.each do |comment| %>
+      <%= render :partial => "projects/partials/comment", :locals => {:comment => comment, :user_id => current_user.id, :project_id => @project.id } %>
+    <% end%>
+  <% else %>
+    No comments found yet
+  <% end %>
+</div>
+<br/>
+<%= form_for(@comment, :remote  => true) do|f| %>
+  <%= hidden_field_tag "project_id", @project.id %>
+  <%= f.hidden_field :commentable_id, :value => @project.id %>
+  <%= f.hidden_field :commentable_type, :value => 'Project' %>
+  <%= f.label :comment %><br />
+  <%= f.text_area :comment, :size => "100x5", :class => "comment_text_area" %>
+  <%= f.submit "Post Comment" %>
+<% end %>
+
+
+<% if current_user == @project.user %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+<% end %>
+<%= link_to 'Back', projects_path %>
+
+

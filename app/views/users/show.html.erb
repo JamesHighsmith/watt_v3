@@ -1,0 +1,24 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+
+  <div class="span8">
+    <% projects = @user.projects %>
+    <% if projects.any? %>
+      <h3>Number of Projects (<%= projects.count %>)</h3>
+      <ol class="projects">
+        <% projects.each do |project| %>
+          <%= link_to project.idea, project_path(project) %>
+          <br/>
+        <%end%>
+      </ol>      
+    <% end %>
+  </div>
+</div>

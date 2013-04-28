@@ -1,0 +1,35 @@
+<!--New Project-->
+
+<% if user_signed_in? %>
+	
+	<div class="container">
+		<div class="hero-unit">
+			<h1><%= current_user.name %>,<br> bring your clean energy project to life!</h1>
+			<h2>Please fill out the following as best you can.</h2>
+			
+				<%= render 'form' %>
+			
+		</div>
+	</div>
+
+<% else %>
+
+	<div class="container">
+		<form class="form-signin">
+			<legend>Please Plug-In to Play</legend>
+			<ul>
+				
+				<li class="btn btn-large btn-block btn-success plug_in_to_play">
+					<%= link_to("Sign Up", new_user_registration_path) %>
+				</li>
+				
+				<br>
+				
+				<li class="btn btn-large btn-block btn-success plug_in_to_play">
+					<%= link_to("Plug In", new_user_session_path)%>
+				</li>
+				
+			</ul>
+		</form>
+	</div>
+<% end %>

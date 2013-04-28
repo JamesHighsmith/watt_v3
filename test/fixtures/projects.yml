@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  idea: MyText
+  address: MyString
+  zipcode: 1
+  problem: MyText
+  solution: MyText
+
+two:
+  user_id: 1
+  idea: MyText
+  address: MyString
+  zipcode: 1
+  problem: MyText
+  solution: MyText

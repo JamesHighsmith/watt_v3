@@ -1,0 +1,24 @@
+<div id="comment_<%= project_id %>_<%= comment.id %>" style="border-left: 1px solid #EEEEEE;margin: 5px;padding-left: 15px;width: 450px;">
+  <b><%= comment.comment %></b>
+  <br/>
+  Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %>
+  <br/>
+  <%= link_to('Vote Up', vote_comment_path(comment, :direction => :up),  :remote  => true) %>
+  &nbsp;|&nbsp;
+  <%= link_to('Vote Down', vote_comment_path(comment, :direction => :up), :remote  => true) %>
+  &nbsp;|&nbsp;
+  <%= link_to 'Reply', 'javascript:void(0);', :onclick => "$('#comment_#{comment.id}').toggle('slow');"  %>
+  <div id="comment_<%= comment.id %>" style="display:none;">
+    <%= form_for(Comment.new, :remote  => true) do|f| %>
+      <%= hidden_field_tag "project_id", project_id %>
+      <%= f.hidden_field :commentable_id, :value => comment.id %>
+      <%= f.hidden_field :commentable_type, :value => 'Comment' %>
+      <%= f.text_area :comment, :size => "100x5", :style => "width:300px !important;", :class => "comment_text_area"%>
+      <%= f.submit "Post Comment" %>
+    <% end %>
+  </div>
+
+  <%  comment.comments.order("created_at desc").each do |sub_comment| %>
+    <%= render :partial => "projects/partials/comment", :locals => {:comment => sub_comment, :user_id => current_user.id, :project_id => project_id } %>
+  <% end%>
+</div>

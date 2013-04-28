@@ -1,0 +1,235 @@
+$navbarBackgroundHighlight: #3BB9FF;
+$navbarBackground: #38ACEC;
+$navbarLinkColor: #ffffff;
+$navbarLinkColorHover: #ffffff;
+$navbarLinkBackgroundActive: none;
+$navbarLinkColorActive: #ffffff;
+$navbarHeight: 35px;
+$baseFontFamily: Oxygen;
+
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
+
+@import 'bootstrap';
+body{
+    padding-top: 60px;
+}
+
+@import 'bootstrap-responsive';
+
+/*--Header--*/
+
+.navbar{
+  margin-bottom: none;
+}
+
+.nav .pull-right{
+  margin-bottom: none;
+}
+
+.pull-right > li{
+  margin: 4px 0px;
+}
+
+.navbar .brand {
+  margin-left:10px;
+  padding:0px 30px;
+  text-shadow: none;
+}
+
+.submit_btn{
+  padding: 0px 0px;
+  a{
+    color: #ffffff;
+  }
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 110%;
+  margin: 5% 0 5% 0;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}
+
+.form-horizontal{
+  padding: 10px 10px 10px 10px;
+  margin-right: 20px;
+  margin-bottom: -20px;
+  margin-left: -100px;
+}
+
+
+
+
+
+/* footer */
+
+.footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+.footer a {
+  color: #555;
+  a:hover { 
+  color: #222;
+  }
+}
+
+.footer small {
+  float: left;
+}
+
+.footer ul {
+  float: right;
+  list-style: none;
+}
+
+.footer ul li {
+  float: left;
+  margin-left: 10px;
+  text-align: center;
+}
+
+
+
+
+/*--Landing Page Hero Unit--*/
+
+.landingpage_body { 
+  background: url(sunflowers.jpg) no-repeat center center fixed;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%; 
+  .hero-unit{
+    background-color: transparent;
+    h1{
+      color: #ffffff;
+      font-size: 300%;
+      line-height:110%;
+      text-shadow: black 1px 1px 1px;
+      text-align:center;
+    }
+    h2{
+      color: #ffffff;
+      font-size: 350%;
+      line-height:120%;
+      text-shadow: black 1px 1px 1px;
+    }
+    .wrapper {
+      text-align: center;
+    }
+    .btn{
+      font-size: 200%;
+      padding: 20px 20px 20px 20px;
+      color: #ffffff;
+    }
+  }
+}
+
+/*--About Us--*/
+
+.about_body { 
+  background: url(brooklyn.jpg) no-repeat center center fixed;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  min-width: 100%;
+  min-height: 100%; 
+  .hero-unit{
+  background-color: transparent;
+  margin-top: 175px;
+  margin-right: 350px;
+  margin-left: 350px;
+  position: fixed;
+    h1{
+      color: #ffffff;
+      font-size: 300%;
+      line-height:110%;
+      text-shadow: black 1px 1px 1px;
+      text-align:center;
+    }
+  }
+}
+
+/*--Plug In Page--*/
+
+.form-signin {
+  -webkit-box-shadow:rgba(0, 0, 0, 0.0470588) 0 1px 2px;
+  background-color:#FFFFFF;
+  border:1px solid #E5E5E5;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  box-shadow:rgba(0, 0, 0, 0.0470588) 0 1px 2px;
+  margin:0 auto 20px;
+  max-width:300px;
+  padding:19px 29px 29px;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+  margin-bottom:10px;
+}
+
+/*--Project Submit Plug In To Play--*/
+
+.plug_in_to_play {
+  a{
+    color: #ffffff;
+    link {
+      color: none;
+      hover {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+/*--New Project Submit Page--*/
+
+textarea {
+  margin:5px 0;
+  width:100%;
+  height: 100px;
+}
+
+/* microposts */
+
+.microposts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.content {
+  display: block;
+}
+.timestamp {
+  color: $grayLight;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+#all_comments{
+  font-size: 11px;
+}
+
+

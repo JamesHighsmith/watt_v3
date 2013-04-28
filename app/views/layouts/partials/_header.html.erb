@@ -1,0 +1,257 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <!-- Be sure to leave the brand out there if you want it shown -->
+
+      <%= link_to image_tag("logo.png", :height => "40", :width => "120", :class => "brand"), "/"  %>
+
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse collapse  navbar-responsive-collapse">
+
+        <!-- .nav, .navbar-search, .navbar-form, etc -->
+
+        <ul class="nav pull-right">
+
+          <!-- Investments -->
+
+          <li>
+            <%= link_to("Browse Investments", new_user_registration_path) %>
+          </li>
+
+          <!-- Participate Dropdown Menu -->
+
+          <li class="dropdown">
+            <a href="/participate" class="dropdown-toggle" data-toggle="dropdown">
+				      Influence
+              <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="<%= new_user_registration_path %>" >
+                  <i class="icon-book"/></i>
+									Research A Project<br>
+                  <h6>Vote and collaborate on new projects</h6>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="<%= new_user_registration_path %>">
+                  <i class="icon-pencil"/></i>
+									Design A Project<br>
+                  <h6>Help bring chosen projects to life</h6>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="<%= new_user_registration_path %>">
+                  <i class="icon-flag"/></i>
+									Finalize A Project<br>
+                  <h6>Help put the final touches on projects</h6>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Submit Project Idea -->
+
+          <li class="btn btn-success submit_btn">
+            <%= link_to("Submit A Project Idea", new_project_path) %>
+          </li>
+
+          <!-- Learn More Dropdown Menu -->
+
+          <li class="dropdown">
+            <a href="/learn_more" class="dropdown-toggle" data-toggle="dropdown">
+				      Learn More
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/how_watt_works">
+                  <i class="icon-cog"/></i>
+									How WA.TT Works<br>
+                  <h6>Clean energy project creation explained</h6>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/blog">
+                  <i class="icon-bullhorn"/></i>
+									Blog<br>
+                  <h6>Check out what we are working on</h6>
+                </a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="/about">
+                  <i class="icon-off"/></i>
+									About Us<br>
+                  <h6>Come meet the WA.TT team</h6>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Search Box
+
+					<li>
+						<form class="navbar-search pull-left" action="">
+							<input type="text" class="search-query span2" placeholder=""/>
+						</form>
+					</li>
+					-->
+          <li>
+            &nbsp&nbsp&nbsp&nbsp
+          </li>
+          <!-- Sign up/in/out -->
+
+          <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="/profile" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.name %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+
+                <li>
+                  <a href="<%= edit_user_registration_path %>">
+                    Welcome,&nbsp&nbsp<%= current_user.name %>!
+                  </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="<%= projects_path(:id => current_user.id) %>">
+                    <i class="icon-heart"/></i>
+                    My Projects
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-thumbs-up"/></i>
+                    Influence
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-signal"/></i>
+                    Investments
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-list-alt"/></i>
+                    Account Balance
+                  </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-envelope"/></i>
+                    Inbox
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-comment"/></i>
+                    Forum
+                  </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="<%= edit_user_registration_path %>">
+                    <i class="icon-user"/></i>
+                    Edit Profile
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <i class="icon-tasks"/></i>
+                    Dashboard
+                  </a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="<%= destroy_user_session_path %>">
+                    <i class="icon-eject"/></i>
+                    Unplug (Log Out)
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+          <% else %>
+            <!--
+                                                  <li class="dropdown">
+                                                          <a href="new_user_session_path" class="dropdown-toggle" data-toggle="dropdown">
+                                                                  Plug In
+                                                                  <b class="caret"></b>
+                                                          </a>
+
+                                              <ul class="dropdown-menu">
+                                                  <li>
+                                                          <form class="form-horizontal">
+                                                                            <div class="control-group">
+                                                                                  <label class="control-label" for="inputEmail">Email</label>
+                                                                              <div class="controls">
+                                                                                <input type="text" id="inputEmail" placeholder="Email">
+                                                                              </div>
+                                                                            </div>
+                                                                            <div class="control-group">
+                                                                              <label class="control-label" for="inputPassword">Password</label>
+                                                                              <div class="controls">
+                                                                                <input type="password" id="inputPassword" placeholder="Password">
+                                                                              </div>
+                                                                            </div>
+                                                                            <div class="control-group">
+                                                                              <div class="controls">
+                                                                                <label class="checkbox">
+                                                                                  <input type="checkbox"> Remember me
+                                                                                </label>
+                                                                                <button type="submit" class="btn btn-success btn-large btn-block">Plug In</button>
+                                                                              </div>
+                                                                            </div>
+                                                                          </form>
+                                                                  </li>
+                                                          </ul>
+                                                  </li>
+            -->
+
+
+            <li>
+              <%= link_to("Plug In", new_user_session_path) %>
+            </li>
+
+            <li>
+              <%= link_to("Sign Up", new_user_registration_path) %>
+            </li>
+
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>				

@@ -1,0 +1,15 @@
+<%= simple_form_for(@project) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :idea, label: 'Clean Energy Project Idea Discription', placeholder: "I want to put solar panels on my roof." %>
+    <%= f.input :address, label: 'Project Location Address', placeholder: "123 Main Street" %>
+    <%= f.input :zipcode, label: 'Zip Code Where The Project Is Located', placeholder: "12345" %>
+    <%= f.input :problem, label: 'What Is The Problem You Are Trying To Solve?', placeholder: "The problems is that..." %>
+    <%= f.input :solution, label: 'What Is Your Suggested Solution To The Problem?', placeholder: "I believe the solution is..." %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
