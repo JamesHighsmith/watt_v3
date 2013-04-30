@@ -5,8 +5,28 @@ class ProjectsController < ApplicationController
     give_vote(params, 'Project')
   end
 
+  def search_by_tags
+    if params[:q].present?
+      sql = "select * from tags where LOWER(name) LIKE "  + "'" + params[:q].downcase.to_s + "%%'" +""
+      result = ActiveRecord::Base.connection.execute(sql)
+      @tags = result.to_a
+      @tags = @tags.flatten
+
+      respond_to do |format|
+        format.json { render :json => @tags }
+      end
+    end
+  end
+
   def index
-    @projects = params[:id].blank? ? Project.all : Project.where("user_id=?",params[:id])
+    #    @projects = params[:id].blank? ? Project.all : Project.where("user_id=?",params[:id])
+
+    if params[:tag]
+      @projects = params[:id].blank? ? Project.tagged_with(params[:tag]) : Project.tagged_with(params[:tag]).where("user_id=?",params[:id])
+    else
+      @projects = params[:id].blank? ? Project.all : Project.where("user_id=?",params[:id])
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }

@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require bootstrap-dropdown
 //= require bootstrap
-
-//= require_tree .
+//= require jquery.tokeninput
+//= require bootstrap.min
+//= require autocomplete-rails

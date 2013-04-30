@@ -10,6 +10,7 @@
     <th>Zipcode</th>
     <th>Problem</th>
     <th>Solution</th>
+    <th>Tags</th>
     <th>Created</th>
     <th>Show</th>
     <th>Edit</th>
@@ -18,13 +19,17 @@
 
   <% @projects.each do |project| %>
     <tr>
-
       <td><%= project.user.name %></td>
       <td><%= project.idea %></td>
       <td><%= project.address %></td>
       <td><%= project.zipcode %></td>
       <td><%= project.problem %></td>
       <td><%= project.solution %></td>
+      <%if project.tag_list.present?%>
+        <td><%= raw project.tag_list.map { |t| link_to t}.join(",")%></td>
+      <%else%>
+        <td> None </td>
+      <%end%>
       <td><%= time_ago_in_words(project.created_at) %> ago.</td>
       <td><%= link_to 'Show', project %></td>
       <% if current_user == project.user %>

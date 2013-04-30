@@ -2,7 +2,8 @@ Watt::Application.routes.draw do
 
   resources :projects do
     member do
-      get :vote      
+      get :vote
+      get :search_by_tag
     end
   end
 
@@ -17,6 +18,12 @@ Watt::Application.routes.draw do
   devise_for :users do get '/users/sign_in' => 'devise/sessions#new' end
   devise_for :users do get '/users/edit/:id' => 'devise/registrations#edit' end
   resources :users, :only => [:edit,:update, :show]
+
+  get "tags/:tag" => "projects#index, as: :tag"
+
+#  match '/search_by_tags' => "projects#search_by_tags"
+
+  match "/search/tags_list" => "projects#search_by_tags"
 
   get "static_pages/home"
 

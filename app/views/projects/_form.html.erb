@@ -7,6 +7,28 @@
     <%= f.input :zipcode, label: 'Zip Code Where The Project Is Located', placeholder: "12345" %>
     <%= f.input :problem, label: 'What Is The Problem You Are Trying To Solve?', placeholder: "The problems is that..." %>
     <%= f.input :solution, label: 'What Is Your Suggested Solution To The Problem?', placeholder: "I believe the solution is..." %>
+    <%= f.input :tag_list, label: "Tags (separated by commas)", placeholder: "Enter Tags"  %>
+
+
+    <div style="float: left;width: 100%;">
+      <div id="video_search_by_tags" style="float:left; width:auto; padding-top: 10px; margin-top: 8px; margin-bottom: 8px;">
+        <input type="text" id="demo-input-facebook-theme" name="tags_list" />
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#demo-input-facebook-theme").tokenInput("/search/tags_list", {
+          theme: "facebook",
+          prePopulate: [<%= raw (params[:tags_list].split(',').collect{ |tag_name| "{name : '#{tag_name}'  }" }.join(',')) unless params[:tags_list].blank? %>],
+          tokenValue: 'name',
+          preventDuplicates:  true,
+          hintText: "Search tags",
+          noResultsText: "no tag found",
+          searchingText: "Searching tags ..."
+        });
+      });
+    </script>
   </div>
 
   <div class="form-actions">

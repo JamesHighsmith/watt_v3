@@ -4,6 +4,7 @@
 <%= link_to('Vote Down', vote_project_path(@project, :direction => :down), :remote  => :true) %>(<%= @project.votes_against %>)
 &nbsp;|&nbsp;
 karma(<%= @project.votes.count %>)
+
 <table>
   <p>
     <b>Creator:</b>
@@ -33,8 +34,15 @@ karma(<%= @project.votes.count %>)
     <b>Created:</b>
     <%= time_ago_in_words(@project.created_at) %> ago.
   </p>
+  <p>
+    <b>Tags:</b>
+    <%if @project.tag_list.present?%>
+      <%= raw @project.tag_list.map { |t| link_to t}.join(",")%>
+    <%else%>
+      None
+    <%end%>
+  </p>
 </table>
-
 
 <div id="all_comments">
   <% comments = @project.comments.order("created_at desc") %>
@@ -46,7 +54,9 @@ karma(<%= @project.votes.count %>)
     No comments found yet
   <% end %>
 </div>
+
 <br/>
+
 <%= form_for(@comment, :remote  => true) do|f| %>
   <%= hidden_field_tag "project_id", @project.id %>
   <%= f.hidden_field :commentable_id, :value => @project.id %>
@@ -56,10 +66,7 @@ karma(<%= @project.votes.count %>)
   <%= f.submit "Post Comment" %>
 <% end %>
 
-
 <% if current_user == @project.user %>
   <%= link_to 'Edit', edit_project_path(@project) %>
 <% end %>
 <%= link_to 'Back', projects_path %>
-
-
