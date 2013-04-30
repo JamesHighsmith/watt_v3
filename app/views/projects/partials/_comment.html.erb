@@ -3,10 +3,9 @@
   <br/>
   Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %>
   <br/>
-  <%= link_to('Vote Up', vote_comment_path(comment, :direction => :up),  :remote  => true) %>(<%= comment.votes_for %>)
-  &nbsp;|&nbsp;
-  <%= link_to('Vote Down', vote_comment_path(comment, :direction => :up), :remote  => true) %>(<%= comment.votes_for %>)
-  &nbsp;|&nbsp;
+  <div id='<%= "voting_#{comment.class.to_s}_#{comment.id}" %>'>
+    <%= render :partial => "shared/voting", :locals => {:object => comment} %>
+  </div>
   <%= link_to 'Reply', 'javascript:void(0);', :onclick => "$('#comment_#{comment.id}').toggle('slow');"  %>
   <div id="comment_<%= comment.id %>" style="display:none;">
     <%= form_for(Comment.new, :remote  => true) do|f| %>

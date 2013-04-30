@@ -13,12 +13,13 @@
     <% projects = @user.projects %>
     <% if projects.any? %>
       <h3>Number of Projects (<%= projects.count %>)</h3>
+      <h3>Karma (<%= @user.karma %>)</h3>
       <ol class="projects">
         <% projects.each do |project| %>
           <%= link_to project.idea, project_path(project) %>
           <br/>
         <%end%>
-      </ol>      
+      </ol>
     <% end %>
   </div>
 </div>

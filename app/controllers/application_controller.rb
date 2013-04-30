@@ -3,21 +3,17 @@ class ApplicationController < ActionController::Base
 
   def give_vote(params,object)
     object = object.constantize.find(params[:id])
-    begin
-      if params[:direction] == 'up'
-        current_user.vote_for(object)
-      else
-        current_user.vote_against(object)
-      end
-      status = "200"
-    rescue ActiveRecord::RecordInvalid
-      status = "404"
+    
+    if params[:direction] == 'up'
+      current_user.vote_exclusively_for(object)
+    else
+      current_user.vote_exclusively_against(object)
     end
-
+    
     respond_to do |format|
       format.js do
-        alert = (status == "200") ? 'Thanks for Voting' : 'Vote Already given'
-        render :js => "alert('#{alert}');"
+        voting = render_to_string(:partial => 'shared/voting', :locals => { :object => object }).to_json
+        render :js => "$('#voting_#{object.class.to_s}_#{object.id}').html(#{voting});$('#voting_#{object.class.to_s}_#{object.id}').effect('highlight', {}, 3000);"
       end
     end
   end

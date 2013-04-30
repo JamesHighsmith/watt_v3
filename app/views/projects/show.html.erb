@@ -1,9 +1,8 @@
 <!--Show Project-->
-<%= link_to('Vote up', vote_project_path(@project, :direction => :up), :remote => :true) %>(<%= @project.votes_for %>)
-&nbsp;|&nbsp;
-<%= link_to('Vote Down', vote_project_path(@project, :direction => :down), :remote  => :true) %>(<%= @project.votes_against %>)
-&nbsp;|&nbsp;
-karma(<%= @project.votes.count %>)
+<div id='<%= "voting_#{@project.class.to_s}_#{@project.id}" %>'>
+  <%= render :partial => "shared/voting", :locals => {:object => @project} %>
+</div>
+
 
 <table>
   <p>

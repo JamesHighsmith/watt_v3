@@ -12,8 +12,13 @@ class User < ActiveRecord::Base
   has_many  :projects,  dependent: :destroy
   # attr_accessible :title, :body
   has_many :comments
+
   def name
     self.first_name + ' ' + self.last_name.first.capitalize + "."
   end
-  has_karma(:projects, :as => :submitter, :weight => 0.5)
+
+  def karma
+    self.projects.sum {|project| project.votes_for} + self.comments.sum {|comment| comment.votes_for}
+  end
+
 end

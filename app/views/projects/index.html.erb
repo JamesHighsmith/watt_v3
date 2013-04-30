@@ -13,8 +13,13 @@
     <th>Tags</th>
     <th>Created</th>
     <th>Show</th>
+
+
     <th>Edit</th>
     <th>Delete</th>
+
+    <th>Vote</th>
+
   </tr>
 
   <% @projects.each do |project| %>
@@ -32,10 +37,16 @@
       <%end%>
       <td><%= time_ago_in_words(project.created_at) %> ago.</td>
       <td><%= link_to 'Show', project %></td>
+
       <% if current_user == project.user %>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
+      <td>
+        <div id='<%= "voting_#{project.class.to_s}_#{project.id}" %>'>
+          <%= render :partial => "shared/voting", :locals => {:object => project} %>
+        </div>
+      </td>
     </tr>
   <% end %>
 </table>

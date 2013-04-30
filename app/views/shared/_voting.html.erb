@@ -1,0 +1,5 @@
+<%= link_to(raw("Vote &#8593;(#{object.votes_for})"), eval("vote_#{object.class.to_s.downcase}_path(object, :direction => :up)"), :remote => :true) %>
+&nbsp;|&nbsp;
+<%= link_to(raw("Vote &#8595;(#{object.votes_against})"), eval("vote_#{object.class.to_s.downcase}_path(object, :direction => :down)"), :remote  => :true) %>
+&nbsp;|&nbsp;
+karma(<%= object.votes.count %>)
