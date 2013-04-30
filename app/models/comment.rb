@@ -12,4 +12,8 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+
+  def karma
+    self.votes_for - self.votes_against
+  end
 end

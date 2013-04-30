@@ -11,4 +11,8 @@ class Project < ActiveRecord::Base
   validates :solution, presence: true
   
   default_scope order: 'projects.created_at DESC'
+
+  def karma
+    self.votes_for - self.votes_against
+  end
 end
