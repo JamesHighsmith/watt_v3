@@ -1,8 +1,15 @@
 <div class="hero-unit">
 	<h1>Edit Project</h1>
+	<% if @project.image.present?%>
+    <%= image_tag @project.image, :class => "img-rounded" %>
+  <%else%>
+    
+  <%end%> 
 
 	<%= render 'form' %>
 
-	<%= link_to 'Show', @project %> |
-	<%= link_to 'Back', projects_path %>
+	<br>
+	
+	<%= link_to 'Show', @project, class: "btn btn-primary" %>
+	<%= link_to 'Back', projects_path, class: "btn btn-primary" %>
 </div>

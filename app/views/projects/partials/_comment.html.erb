@@ -1,19 +1,25 @@
 <div id="comment_<%= project_id %>_<%= comment.id %>" style="border-left: 1px solid #EEEEEE;margin: 5px;padding-left: 15px;width: 450px;">
+  
+
+
   <b><%= comment.comment %></b>
-  <br/>
-  Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %>
-  <br/>
+  
+  <br/>Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %><br/>
+  
   <div id='<%= "voting_#{comment.class.to_s}_#{comment.id}" %>'>
     <%= render :partial => "shared/voting", :locals => {:object => comment} %>
   </div>
+  
   <%= link_to 'Reply', 'javascript:void(0);', :onclick => "$('#comment_#{comment.id}').toggle('slow');"  %>
+
+  
   <div id="comment_<%= comment.id %>" style="display:none;">
     <%= form_for(Comment.new, :remote  => true) do|f| %>
       <%= hidden_field_tag "project_id", project_id %>
       <%= f.hidden_field :commentable_id, :value => comment.id %>
       <%= f.hidden_field :commentable_type, :value => 'Comment' %>
       <%= f.text_area :comment, :size => "100x5", :style => "width:300px !important;", :class => "comment_text_area"%>
-      <%= f.submit "Post Comment" %>
+      <%= f.submit "Post Influence", class: "btn btn-large btn-success" %>
     <% end %>
   </div>
 

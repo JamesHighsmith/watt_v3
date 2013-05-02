@@ -1,8 +1,8 @@
 <h1>My Clean Energy Projects</h1>
 
-<%= link_to 'New Project', new_project_path %><br>
+<%= link_to 'Submit New Project Idea', new_project_path, class: "btn btn-large btn-success" %><br>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Vote</th>
     <th>Creator</th>
@@ -31,7 +31,7 @@
           <%= render :partial => "shared/voting", :locals => {:object => project} %>
         </div>
       </td>
-      <td><%= project.user.name %></td>
+      <td><%= link_to project.user.name, user_path(project.user) %></td>
       <td><%= project.idea %></td>
       <td><%= project.address %></td>
       <td><%= project.zipcode %></td>
@@ -48,11 +48,11 @@
         <td> None </td>
       <%end%>
       <td><%= time_ago_in_words(project.created_at) %> ago.</td>
-      <td><%= link_to 'Show', project %></td>
+      <td><%= link_to 'Show', project, class: "btn btn-primary" %></td>
 
       <% if current_user == project.user %>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_project_path(project), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       <% end %>
       
     </tr>

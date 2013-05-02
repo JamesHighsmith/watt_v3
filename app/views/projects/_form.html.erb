@@ -10,7 +10,7 @@
     <%= f.input :zipcode, label: 'Zip Code Where The Project Is Located', placeholder: "12345" %>
     <%= f.input :problem, label: 'What Is The Problem You Are Trying To Solve?', placeholder: "The problems is that..." %>
     <%= f.input :solution, label: 'What Is Your Suggested Solution To The Problem?', placeholder: "I believe the solution is..." %>
-    <%= f.input :image, label: "Attach Files! (Get visual! Attachments must be under 5MB, and only images ending in .JPG, .GIF, and .PNG will appear in thumbnail form)" %>
+    <%= f.input :image, label: "Attach Files! (Get visual! Attachments must be under 5MB, and only images ending in .JPG, .GIF, and .PNG will appear in thumbnail form)", class: "btn btn-large btn-success" %>
     <%#= f.input :tag_list, label: "Tags (separated by commas)", placeholder: "Enter Tags"  %>
 
 
@@ -36,6 +36,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-large btn-success" %>
   </div>
 <% end %>

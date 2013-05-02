@@ -11,7 +11,7 @@
 
       <!-- Be sure to leave the brand out there if you want it shown -->
 
-      <%= link_to image_tag("logo.png", :height => "40", :width => "120", :class => "brand"), "/"  %>
+      <%= link_to image_tag("logo.png", :height => "40", :width => "120", :class => "brand"), projects_path  %>
 
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse  navbar-responsive-collapse">
@@ -22,7 +22,7 @@
 
           <!-- Investments -->
           <li>
-            <%= link_to("Browse Projects", projects_path) %>
+            <%#= link_to("Browse Projects", projects_path) %>
           </li>
           
           <li>
@@ -39,7 +39,7 @@
 
             <ul class="dropdown-menu">
               <li>
-                <a href="<%= new_user_registration_path %>" >
+                <a href="<%= projects_path %>" >
                   <i class="icon-book"/></i>
 									Research A Project<br>
                   <h6>Vote and collaborate on new projects</h6>
@@ -47,7 +47,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="<%= new_user_registration_path %>">
+                <a href="<%= projects_path %>">
                   <i class="icon-pencil"/></i>
 									Design A Project<br>
                   <h6>Help bring chosen projects to life</h6>
@@ -55,7 +55,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="<%= new_user_registration_path %>">
+                <a href="<%= projects_path %>">
                   <i class="icon-flag"/></i>
 									Finalize A Project<br>
                   <h6>Help put the final touches on projects</h6>
@@ -79,7 +79,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="/how_watt_works">
+                <a href="<%= static_pages_how_watt_works_path %>">
                   <i class="icon-cog"/></i>
 									How WA.TT Works<br>
                   <h6>Clean energy project creation explained</h6>
@@ -95,7 +95,7 @@
               </li>
               <li class="divider"></li>
               <li>
-                <a href="/about">
+                <a href="<%= static_pages_about_path %>">
                   <i class="icon-off"/></i>
 									About Us<br>
                   <h6>Come meet the WA.TT team</h6>
