@@ -30,6 +30,10 @@
     <%= @project.solution %>
   </p>
   <p>
+    <b>Attachments:</b>
+    <%= image_tag @project.image %>
+  </p>
+  <p>
     <b>Created:</b>
     <%= time_ago_in_words(@project.created_at) %> ago.
   </p>

@@ -10,8 +10,11 @@ class Comment < ActiveRecord::Base
   # want user to vote on the quality of comments.
   #acts_as_voteable
 
+  
+
   # NOTE: Comments belong to a user
   belongs_to :user
+  has_attached_file :image, styles: { medium: "320x240>"}
 
   def karma
     self.votes_for - self.votes_against

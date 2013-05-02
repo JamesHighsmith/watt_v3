@@ -12,6 +12,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'devise'
 gem 'simple_form'
 gem "paperclip", "~> 3.0"
+gem 'cocaine', '0.3.2'
 gem 'therubyracer', :platforms => :ruby
 gem 'rb-readline'
 gem 'acts_as_commentable'
