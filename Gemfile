@@ -11,8 +11,8 @@ gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'devise'
 gem 'simple_form'
-gem "paperclip", "~> 3.0"
-gem 'cocaine', '0.3.2'
+gem "paperclip", "3.4.1"
+gem 'cocaine', '0.5.1'
 gem 'therubyracer', :platforms => :ruby
 gem 'rb-readline'
 gem 'acts_as_commentable'
