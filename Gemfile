@@ -6,7 +6,6 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'thumbs_up'
 # gem 'mysql2'
-gem 'sqlite3'
 gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'devise'
@@ -34,6 +33,10 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem "rails3-jquery-autocomplete"
+
+group :development, :test do
+  gem 'sqlite3'
+end
 
 group :production do
   gem 'pg'
