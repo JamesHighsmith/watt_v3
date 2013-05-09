@@ -1,73 +1,79 @@
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <h1>Clean Energy Projects</h1>
+    <div class="pull-left">
+      <%= link_to 'Submit New Project Idea', new_project_path, class: "btn btn-success" %><br>
+    </div>
 
-<h1>Clean Energy Projects</h1>
-<div class="pull-right">
-  <%= link_to 'Submit New Project Idea', new_project_path, class: "btn btn-success" %><br>
+    <br>
+
+    <table class="table table-hover table-condensed">
+      <thead class="strong">
+        <tr>
+          <!-- <th>Project Number</th> -->
+          <th>Influence</th>
+          <th>Creator</th>
+          <th>Clean Energy Project Idea</th>
+          <!-- <th>Address</th>
+          <th>Zipcode</th>
+          <th>Problem</th>
+          <th>Solution</th>
+          <th>Attachments</th>
+          <th>Tags</th> -->
+          <th>Created</th>
+          <th></th>
+          <th></th>
+          <th></th>   
+        </tr>
+      </thead>
+
+      <% @projects.each do |project| %>
+        <tr>
+          <!-- <td>
+            <%#= project.id %>
+          </td> -->
+          <td>
+            <div id='<%= "voting_#{project.class.to_s}_#{project.id}" %>'>
+              <%= render :partial => "shared/voting", :locals => {:object => project} %>
+            </div>
+          </td>
+          
+          <td><%= link_to project.user.name, projects_path(:id => project.user.id) %></td>
+          
+          <td onclick="location.href='<%= project_path(project) %>'"><%= project.idea %></td>
+          
+          <!-- <td><%= project.address %></td>
+          <td><%= project.zipcode %></td>
+          
+          <td><%= project.problem %></td>
+          
+          <td><%= project.solution %></td>
+          
+          <% if project.image.present? %>
+            <td>Yes</td>
+          <% else %>
+            <td> None </td>
+          <% end %>
+          
+           <%if project.tag_list.present?%>
+            <td><%= raw project.tag_list.map { |t| link_to t}.join(",")%></td>
+          <%else%>
+            <td> None </td>
+          <%end%> -->
+          
+          <td><%= time_ago_in_words(project.created_at) %> ago</td>
+          <td><%= link_to 'Influence', project, class: "btn btn-mini btn-primary" %></td>
+
+          <% if current_user == project.user %>
+            <td><%= link_to 'Edit', edit_project_path(project), class: "btn btn-mini btn-warning" %></td>
+            <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger" %></td>
+          <% end %>
+          
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
-
-<br>
-
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>Influence</th>
-      <th>Creator</th>
-      <th>Project Idea</th>
-      <!-- <th>Address</th>
-      <th>Zipcode</th>
-      <th>Problem</th>
-      <th>Solution</th>
-      <th>Attachments</th>
-      <th>Tags</th> -->
-      <th>Created</th>
-      <th></th>
-      <th></th>
-      <th></th>   
-    </tr>
-  </thead>
-
-  <% @projects.each do |project| %>
-    <tr onclick="location.href='<%= project_path(project) %>'">
-      <td>
-        <div id='<%= "voting_#{project.class.to_s}_#{project.id}" %>'>
-          <%= render :partial => "shared/voting", :locals => {:object => project} %>
-        </div>
-      </td>
-      
-      <td><%= link_to project.user.name, user_path(project.user) %></td>
-      
-      <td><%= project.idea %></td>
-      
-      <!-- <td><%= project.address %></td>
-      <td><%= project.zipcode %></td>
-      
-      <td><%= project.problem %></td>
-      
-      <td><%= project.solution %></td>
-      
-      <% if project.image.present? %>
-        <td>Yes</td>
-      <% else %>
-        <td> None </td>
-      <% end %>
-      
-       <%if project.tag_list.present?%>
-        <td><%= raw project.tag_list.map { |t| link_to t}.join(",")%></td>
-      <%else%>
-        <td> None </td>
-      <%end%> -->
-      
-      <td><%= time_ago_in_words(project.created_at) %> ago</td>
-      <td><%= link_to 'Show', project, class: "btn btn-mini btn-primary" %></td>
-
-      <% if current_user == project.user %>
-        <td><%= link_to 'Edit', edit_project_path(project), class: "btn btn-mini btn-warning" %></td>
-        <td><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini btn-danger" %></td>
-      <% end %>
-      
-    </tr>
-  <% end %>
-</table>
-
 
 
 

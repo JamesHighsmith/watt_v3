@@ -1,15 +1,28 @@
-<div class="hero-unit">
-	<h1>Edit Project</h1>
-	<% if @project.image.present?%>
-    <%= image_tag @project.image, :class => "img-rounded" %>
-  <%else%>
-    
-  <%end%> 
+<div class="row-fluid">
+  <div class="span10 offset1">
+		<div class="hero-unit">
+			
+			<div class="pull-left">
+				<%= link_to 'Back To Projects', projects_path, class: "btn btn-success" %>
+			</div>
+			
+			<div class="pull-right">
+		    <%= link_to 'View This Project', @project, class: "btn btn-success" %>
+		  </div>
 
-	<%= render 'form' %>
+		  <br>
+		  <br>
 
-	<br>
-	
-	<%= link_to 'Show', @project, class: "btn btn-primary" %>
-	<%= link_to 'Back', projects_path, class: "btn btn-primary" %>
+			<h2>Edit Your Clean Energy Project</h2>
+			<% if @project.image.present?%>
+		    <%= image_tag @project.image, :class => "img-rounded" %>
+		  <%else%>
+		    
+		  <%end%> 
+
+			<%= render 'form' %>
+
+			<br>
+		</div>
+	</div>
 </div>

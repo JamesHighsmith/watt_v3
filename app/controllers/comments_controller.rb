@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
         if comment.commentable.class.to_s == "Project"
           render :js => "$('#all_comments').append(#{comment_html});$('.comment_text_area').val('');"
         elsif comment.commentable.class.to_s == "Comment"
-          puts "***************************************"
+          #puts "***************************************"
           puts "comment_#{params[:project_id]}_#{comment.id}"
           render :js => "$('#comment_#{params[:project_id]}_#{comment.commentable_id}').append(#{comment_html});$('.comment_text_area').val('');$('#comment_#{comment.commentable_id}').hide('slow');"
         end

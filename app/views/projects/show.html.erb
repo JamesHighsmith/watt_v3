@@ -1,119 +1,125 @@
 <!--Show Project-->
-
-<div id='<%= "voting_#{@project.class.to_s}_#{@project.id}" %>'>
-  <%= render :partial => "shared/voting", :locals => {:object => @project} %>
-</div>
-
-
-<table>
-  <p>
-    <b>Project Creator:</b>
-    <%= link_to @project.user.name, user_path(@project.user) %>
-  </p>
-  <p>
-    <b>Idea:</b>
-    <%= @project.idea %>
-  </p>
-  <p>
-    <b>Address:</b>
-    <%= @project.address %>
-  </p>
-  <p>
-    <b>Zipcode:</b>
-    <%= @project.zipcode %>
-  </p>
-  <p>
-    <b>Problem:</b>
-    <%= @project.problem %>
-  </p>
-  <p>
-    <b>Solution:</b>
-    <%= @project.solution %>
-  </p>
-  <p>
-    <b>Attachments:</b>
-    <% if @project.image.present?%>
-      <%= image_tag @project.image, :class => "img-rounded" %>
-    <%else%>
-      None
-    <%end%> 
-  </p>
-  <p>
-    <b>Created:</b>
-    <%= time_ago_in_words(@project.created_at) %> ago.
-  </p>
-  <p>
-    <b>Tags:</b>
-    <%if @project.tag_list.present?%>
-      <%= raw @project.tag_list.map { |t| link_to t}.join(",")%>
-    <%else%>
-      None
-    <%end%>
-  </p>
-</table>
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <div class="hero-unit">
+      <div class="pull-left">
+        <%= link_to 'Back To Projects', projects_path, class: "btn btn-success" %>
+      </div>
+      <div class="pull-right">  
+        <% if current_user == @project.user %>
+          <%= link_to 'Edit This Project', edit_project_path(@project), class: "btn btn-warning" %>
+        <% end %>
+      </div>
+      <br>
+      <br>
 
 
+      <div id='<%= "voting_#{@project.class.to_s}_#{@project.id}" %>'>
+        <%= render :partial => "shared/voting", :locals => {:object => @project} %>
+      </div>
 
-<!-- this is the comments posting section -->
+
+      <table>
+        <p>
+          <b>Project Creator:</b>
+          <%#= link_to @project.user.name, user_path(@project.user) %>
+          <%= link_to @project.user.name, projects_path(:id => @project.user.id) %>
+        </p>
+        <p>
+          <b>Idea:</b>
+          <%= @project.idea %>
+        </p>
+        <%#= image_tag "http://maps.google.com/maps/api/staticmap?size=650x650&scale=1&maptype=satellite&sensor=false&zoom=20&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+        <!-- <p>
+          <b>Address:</b>
+          <%#= @project.address %>
+        </p>
+        <p>
+          <b>Zipcode:</b>
+          <%#= @project.zipcode %>
+        </p> -->
+        <p>
+          <b>Problem:</b>
+          <%= @project.problem %>
+        </p>
+        <p>
+          <b>Solution:</b>
+          <%= @project.solution %>
+        </p>
+        <p>
+          <b>Attachments:</b>
+          <% if @project.image.present?%>
+            <%= image_tag @project.image, :class => "img-rounded" %>
+          <%else%>
+            None
+          <%end%> 
+        </p>
+        <p>
+          <b>Created:</b>
+          <%= time_ago_in_words(@project.created_at) %> ago.
+        </p>
+        <p>
+          <b>Tags:</b>
+          <%if @project.tag_list.present?%>
+            <%= raw @project.tag_list.map { |t| link_to t}.join(",")%>
+          <%else%>
+            None
+          <%end%>
+        </p>
+      </table>
 
 
 
-<%= simple_form_for(@comment, :remote  => true) do |f| %>
-  <%= f.full_error :image_file_size, class: "alert alert-error" %>
-  <%= f.full_error :image_content_type, class: "alert alert-error" %>
-  <%= hidden_field_tag "project_id", @project.id %>
-  <%= f.hidden_field :commentable_id, :value => @project.id %>
-  <%= f.hidden_field :commentable_type, :value => 'Project' %>
-  <%= f.label :comment %><br />
-  <%= f.text_area :comment, :size => "width: 450px", :class => "comment_text_area" %>
-  
-  <!-- this is where I need to add attachments for comments -->
-  <div class="inputs">
-    <%#= f.input :image, label: "Attach Files! (Get visual! Attachments must be under 5MB, and only images ending in .JPG, .GIF, and .PNG will appear in thumbnail form)" %>
+    <!-- This is the first tier comments posting section -->
+
+
+
+      <%= simple_form_for(@comment, :remote  => true) do |f| %>
+        <%= f.full_error :image_file_size, class: "alert alert-error" %>
+        <%= f.full_error :image_content_type, class: "alert alert-error" %>
+        <%= hidden_field_tag "project_id", @project.id %>
+        <%= f.hidden_field :commentable_id, :value => @project.id %>
+        <%= f.hidden_field :commentable_type, :value => 'Project' %>
+        <%= f.label :comment %><br />
+        <%= f.text_area :comment, :size => "width: 450px", :class => "comment_text_area" %>
+        
+    <!-- this is where I need to add attachments for comments -->
+        
+        <div class="inputs">
+          <%#= f.input :image, label: "Attach Files! (Get visual! Attachments must be under 5MB, and only images ending in .JPG, .GIF, and .PNG will appear in thumbnail form)" %>
+        </div>
+
+        <br> 
+        <div>
+          <%= f.button :submit, class: "btn btn-large btn-success" %>
+        </div>
+      <% end %>
+
+
+
+      <div id="all_comments">
+        <% comments = @project.comments.order("created_at asc") %>
+
+            <% unless comments.blank? %>
+              <% comments.each do |comment| %>
+              <% if @comment.image.present?%>
+                <%= image_tag @comment.image(:medium), :class => "img-rounded" %>
+              <%else%>
+                
+              <%end%> 
+            <%= render :partial => "projects/partials/comment", :locals => {:comment => comment, :user_id => current_user.id, :project_id => @project.id } %>
+          <% end%>
+        <% else %>
+          Be the first to influence this project!
+        <% end %>
+      </div>
+
+      
+      <br>
+      <br>
+    </div>
   </div>
-
-  <br> 
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-large btn-success" %>
-  </div>
-<% end %>
-
-
-
-<div id="all_comments">
-  <% comments = @project.comments.order("created_at asc") %>
-
-      <% unless comments.blank? %>
-        <% comments.each do |comment| %>
-        <% if @comment.image.present?%>
-          <%= image_tag @comment.image(:medium), :class => "img-rounded" %>
-        <%else%>
-          
-        <%end%> 
-      <%= render :partial => "projects/partials/comment", :locals => {:comment => comment, :user_id => current_user.id, :project_id => @project.id } %>
-    <% end%>
-  <% else %>
-    Be the first to influence this project!
-  <% end %>
 </div>
-
-<br>
-<br>
-<br>
-
-
-<% if current_user == @project.user %>
-  <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-success" %>
-<% end %>
-<%= link_to 'Back', projects_path, class: "btn btn-success" %>
-
-<br>
-<br>
-<br>
-<br>
-
-
-
 
 
 

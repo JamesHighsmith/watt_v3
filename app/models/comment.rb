@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :title, :comment, :user_id, :commentable_id, :commentable_type, :image
   belongs_to :commentable, :polymorphic => true
   acts_as_commentable
-  default_scope -> { order('created_at ASC') }
+  default_scope -> { order('created_at DESC') }
 
   # NOTE: install the acts_as_votable plugin if you
   # want user to vote on the quality of comments.

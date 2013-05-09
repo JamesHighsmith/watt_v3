@@ -4,7 +4,8 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :user_id
       t.text :idea
       t.string :address
-      t.integer :zipcode
+      t.float :latitude
+      t.float :longitude
       t.text :problem
       t.text :solution
 

@@ -2,15 +2,23 @@
   <%= f.error_notification %>
   <%= f.full_error :image_file_size, class: "alert alert-error" %>
   <%= f.full_error :image_content_type, class: "alert alert-error" %>
+  <%= f.full_error :address, class: "alert alert-error" %>
+  
 
   <div class="form-inputs">
-    
+    <br>
     <%= f.input :idea, label: 'Clean Energy Project Idea Discription', placeholder: "I want to put solar panels on my roof." %>
-    <%= f.input :address, label: 'Project Location Address', placeholder: "123 Main Street" %>
-    <%= f.input :zipcode, label: 'Zip Code Where The Project Is Located', placeholder: "12345" %>
+    <br>
+    <%= f.input :address, label: 'Project Location Address', placeholder: "123 Main Street, 10001 USA" %>
+    <br>
+    <%#= f.input :zipcode, label: 'Zip Code Where The Project Is Located', placeholder: "12345" %>
+    
     <%= f.input :problem, label: 'What Is The Problem You Are Trying To Solve?', placeholder: "The problems is that..." %>
+    <br>
     <%= f.input :solution, label: 'What Is Your Suggested Solution To The Problem?', placeholder: "I believe the solution is..." %>
-    <%= f.input :image, label: "Attach Files! (Get visual! Attachments must be under 5MB, and only images ending in .JPG, .GIF, and .PNG will appear in thumbnail form)", class: "btn btn-large btn-success" %>
+    <br>
+    <%= f.input :image, label: "Attach files", :class => "btn btn-large btn-success" %>
+    
     <%#= f.input :tag_list, label: "Tags (separated by commas)", placeholder: "Enter Tags"  %>
 
 
@@ -35,7 +43,7 @@
     </script>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-large btn-success" %>
-  </div>
+  
+    <%= f.button :submit, class: "btn btn-large btn-block btn-success" %>
+ 
 <% end %>

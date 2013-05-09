@@ -1,25 +1,39 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+<!-- User Public Profile -->
 
-  <div class="span8">
-    <% projects = @user.projects %>
-    <% if projects.any? %>
-      <h3>Number of Projects (<%= projects.count %>)</h3>
-      <h3>Influence (<%= @user.karma %>)</h3>
-      <ol class="projects">
-        <% projects.each do |project| %>
-          <%= link_to project.idea, project_path(project) %>
-          <br/>
-        <%end%>
-      </ol>
-    <% end %>
+<div class="hero-unit">
+  <% provide(:title, @user.name) %>
+  <div class="pull-left">
+    <%= link_to 'Back To Projects', projects_path, class: "btn btn-success" %>
+  </div>
+  
+  <br>
+  <br>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <h1>
+          <%= @user.name %>
+
+          <br>
+          <%= gravatar_for @user %>
+          
+        </h1>
+      </section>
+    </aside>
+
+    <div class="span8">
+      <% projects = @user.projects %>
+      <% if projects.any? %>
+        <h3>Number of Projects Created (<%= projects.count %>)</h3>
+        <h3>Influence Earned (<%= @user.karma %>)</h3>
+        <ol class="projects">
+          <% projects.each do |project| %>
+            <%= link_to project.idea, project_path(project) %>
+
+            <br/>
+          <%end%>
+        </ol>
+      <% end %>
+    </div>
   </div>
 </div>

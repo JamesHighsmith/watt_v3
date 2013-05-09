@@ -1,14 +1,16 @@
 <!--New Project-->
 
 <% if user_signed_in? %>
-	
-	<div class="container">
-		<div class="hero-unit">
-			<h1><%= current_user.name %>,<br> bring your clean energy project to life!</h1>
-			<h2>Please fill out the following with as much detail as you can.</h2>
-			
-				<%= render 'form' %>
-			
+	<div class="row-fluid">
+	  <div class="span10 offset1">	
+		
+			<div class="hero-unit">
+				<h2><%= current_user.name %>, bring your clean energy project to life!
+				Please fill out the following with as much detail as you can.</h2>
+				
+					<%= render 'form' %>
+				
+			</div>
 		</div>
 	</div>
 

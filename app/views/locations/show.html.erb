@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=650x650&scale=1&maptype=satellite&sensor=false&zoom=20&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+
+<br>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

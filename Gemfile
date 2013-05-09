@@ -17,6 +17,8 @@ gem 'therubyracer', :platforms => :ruby
 gem 'rb-readline'
 gem 'acts_as_commentable'
 gem 'acts-as-taggable-on'
+gem 'gmaps4rails'
+gem 'geocoder'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

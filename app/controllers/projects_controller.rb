@@ -19,7 +19,8 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    #    @projects = params[:id].blank? ? Project.all : Project.where("user_id=?",params[:id])
+    #  @projects = params[:id].blank? ? Project.all : Project.where("user_id=?",params[:id])
+    #@locations = Location.all
 
     if params[:tag]
       @projects = params[:id].blank? ? Project.tagged_with(params[:tag]) : Project.tagged_with(params[:tag]).where("user_id=?",params[:id])
@@ -36,10 +37,18 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @comment = Comment.new
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
     end
+
+    # @location = Location.find(params[:id])
+
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @location }
+    # end
   end
 
 
@@ -50,6 +59,9 @@ class ProjectsController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @project }
     end
+
+    #@location = Location.new
+
   end
 
   def edit
@@ -58,6 +70,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = current_user.projects.build(params[:project])
+    #@location = Location.new(params[:location])
 
     respond_to do |format|
       if @project.save
@@ -68,6 +81,7 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def update

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502160357) do
+ActiveRecord::Schema.define(:version => 20130506202128) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",              :limit => 50, :default => ""
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20130502160357) do
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "locations", :force => true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.text     "idea"
@@ -45,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20130502160357) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "projects", ["user_id", "created_at"], :name => "index_projects_on_user_id_and_created_at"

@@ -1,5 +1,8 @@
 Watt::Application.routes.draw do
 
+  resources :locations
+
+
   resources :projects do
     member do
       get :vote

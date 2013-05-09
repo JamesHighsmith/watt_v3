@@ -4,7 +4,7 @@
 
   <b><%= comment.comment %></b>
   
-  <br/>Posted by:&nbsp;<%= link_to comment.user.name, user_path(comment.user) %><br/>
+  <br/>Posted by:&nbsp;&nbsp;<%= link_to comment.user.name, user_path(comment.user) %><%#= link_to comment.user.name, project_path(:id => project.user.id) %>&nbsp;&nbsp;<%= time_ago_in_words(comment.created_at) %> ago.
   
   <div id='<%= "voting_#{comment.class.to_s}_#{comment.id}" %>'>
     <%= render :partial => "shared/voting", :locals => {:object => comment} %>
@@ -12,6 +12,7 @@
   
   <%= link_to 'Reply', 'javascript:void(0);', :onclick => "$('#comment_#{comment.id}').toggle('slow');"  %>
 
+<!-- Reply Message -->
   
   <div id="comment_<%= comment.id %>" style="display:none;">
     <%= form_for(Comment.new, :remote  => true) do|f| %>
